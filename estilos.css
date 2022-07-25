@@ -1,0 +1,90 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+:root{
+    --first-color: #f73a00c4;
+    --second-color: #222020d0;
+}
+.body{
+    background-color: var(--first-color);
+}
+.conteiner{
+    background-color: var(--first-color);
+    
+}
+.logo{
+    width: 100px;
+    height: 100px;
+}
+
+.borrar{
+    width: 20px;
+    height: 20px;
+}
+
+
+.titulo{
+    text-align: center;
+}
+
+.lista-tareas{
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+
+.tareas-input{
+    width: 200px;
+    height: 30px;
+    background-color: white;
+}
+
+.tareas-input ::placeholder{
+    color: white;
+    background-color: aliceblue;
+}
+.boton-submit{
+    height: 34px;
+    width: 30px;
+    border-radius: 15px;
+    border: 1px solid black;
+    margin-left: 10px;
+    background-color: white;
+    color: var(--first-color);
+    box-shadow: 1px 1px 1px rgb(0, 0, 0);
+    
+}
+
+.boton-submit :hover{
+    background-color: white;
+    color: var(--second-color)
+}
+
+.lista-conteiner{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: auto;
+    margin: auto;
+    align-items: center;
+}
+
+.contenedor-tareas{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    background-color: aliceblue;
+    width: 70%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+
+.stat{
+    text-align: center;
+    padding: 20px;
+}
