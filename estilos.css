@@ -12,7 +12,7 @@
 }
 .conteiner{
     background-color: var(--first-color);
-    
+    height: 100vh;
 }
 .logo{
     width: 100px;

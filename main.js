@@ -8,20 +8,25 @@ AgregarTarea();
 
 let input = document.getElementById("tareas");
 let contador = 0;
+let tareasDelDia = [];
 
 let AgregarTarea = function(){
     contador++;
-
+    
     let tarea_agregada = input.value;
+    if(tarea_agregada == ""){
+        
+        return alert("Tenes que introducir texto")
+    }
     input.value = ``;
-
+    
 
     lista.innerHTML += 
     `
         <div class="contenedor-tareas" id="${contador}">
                 <input type="checkbox" name="" id="checkbox">
                 <label for="">${tarea_agregada}</label>
-                <img src="imagenes/borrar.png" alt="" class="borrar">
+                <img src="imagenes/borrar.png" alt="" class="borrar" id="Borrar">
             </div>
         </div>
         `
@@ -30,28 +35,29 @@ let AgregarTarea = function(){
 
 
 
+let actualizacion = () =>{
+    let element = lista.querySelectorAll(`div`);
+    let checkbox = lista.querySelectorAll(`input[type="checkbox"]:checked`);
+    stats.innerHTML = `<p>Tareas Pendientes: ${element.length} Completadas: ${checkbox.length}</p>`;
 
-let actualizacion = function actualizar_stats(){
-    
-    stats.innerHTML =
-    `
-    <p>Tareas Pendientes: ${contador}
-    `
-    
-    
-    let checkbox1 = document.getElementById("checkbox");
-    let check = 0;
-    
-    checkbox1.addEventListener ("change", tareasRealizadas);
-    
-    function tareasRealizadas(e){
-    console.log(e);
-        check++
-        stats2.innerHTML  =
-        `
-        <p>Tareas realizadas: ${check}
-        `
-    }
 }
+
+
+lista.addEventListener("click", (e) =>{
+if (e.srcElement.nodeName == "INPUT") {
+    actualizacion();
+} 
+else if (e.srcElement.nodeName == "IMG"){
+    console.log(e.srcElement.parentNode.id);
+    borrarTarea(e.srcElement.parentNode.id)
+}   
+});
+
+let borrarTarea = (id) =>{
+let tareaABorrar =  document.getElementById(id);
+lista.removeChild(tareaABorrar);
+actualizacion();
+}
+
 
 
