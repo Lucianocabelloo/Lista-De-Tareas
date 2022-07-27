@@ -1,7 +1,6 @@
+
 listadetareas.addEventListener("submit", ()=>{
-
-AgregarTarea();
-
+    AgregarTarea();
 })
 
 
@@ -10,28 +9,45 @@ let input = document.getElementById("tareas");
 let contador = 0;
 let tareasDelDia = [];
 
+document.addEventListener("DOMContentLoaded", () =>{
+    if(localStorage.getItem("tareasDelDia")){
+        tareasDelDia = JSON.parse(localStorage.getItem("tareasDelDia"));
+        AgregarTarea()
+    }
+})
+
 let AgregarTarea = function(){
     contador++;
     
     let tarea_agregada = input.value;
+    
     if(tarea_agregada == ""){
         
         return alert("Tenes que introducir texto")
     }
     input.value = ``;
     
-
+    
+    // LocalStorage
+    
+    tareasDelDia.push(tarea_agregada);
+    
+    
+    
     lista.innerHTML += 
     `
         <div class="contenedor-tareas" id="${contador}">
-                <input type="checkbox" name="" id="checkbox">
-                <label for="">${tarea_agregada}</label>
-                <img src="imagenes/borrar.png" alt="" class="borrar" id="Borrar">
-            </div>
+        <input type="checkbox" name="" id="checkbox">
+        <label for="">${tarea_agregada}</label>
+        <img src="imagenes/borrar.png" alt="" class="borrar" id="Borrar">
+        </div>
         </div>
         `
         actualizacion();
+        
+        localStorage.setItem("tareasDelDia", JSON.stringify(tareasDelDia))
 }
+
 
 
 
@@ -41,7 +57,6 @@ let actualizacion = () =>{
     stats.innerHTML = `<p>Tareas Pendientes: ${element.length} Completadas: ${checkbox.length}</p>`;
 
 }
-
 
 lista.addEventListener("click", (e) =>{
 if (e.srcElement.nodeName == "INPUT") {
@@ -58,6 +73,3 @@ let tareaABorrar =  document.getElementById(id);
 lista.removeChild(tareaABorrar);
 actualizacion();
 }
-
-
-
