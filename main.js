@@ -9,12 +9,6 @@ let input = document.getElementById("tareas");
 let contador = 0;
 let tareasDelDia = [];
 
-document.addEventListener("DOMContentLoaded", () =>{
-    if(localStorage.getItem("tareasDelDia")){
-        tareasDelDia = JSON.parse(localStorage.getItem("tareasDelDia"));
-        AgregarTarea()
-    }
-})
 
 let AgregarTarea = function(){
     contador++;
@@ -31,7 +25,9 @@ let AgregarTarea = function(){
     // LocalStorage
     
     tareasDelDia.push(tarea_agregada);
-    
+    localStorage.setItem("tareasDelDia", JSON.stringify(tareasDelDia))
+    let tareasParseadas = JSON.parse(localStorage.getItem("tareasDelDia"))
+
     
     
     lista.innerHTML += 
@@ -45,7 +41,6 @@ let AgregarTarea = function(){
         `
         actualizacion();
         
-        localStorage.setItem("tareasDelDia", JSON.stringify(tareasDelDia))
 }
 
 
