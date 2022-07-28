@@ -139,6 +139,8 @@ margin: 0px 0px 0px 10px;
 	border: 1px solid;
 	margin: 5px;
 	padding: 20px;
+	color: black;
+	font-weight: bold ;
 }
 
 
@@ -169,4 +171,7 @@ margin: 0px 0px 0px 10px;
 
 .conteiner img {
 	margin: 2rem;
+}
+.boton-submit:after {
+	background-color: transparent;
 }
