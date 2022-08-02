@@ -8,12 +8,14 @@ let lista = document.getElementById("lista")
 
 // Ver si hay tareas antiguas o si el array está vacío
 let tareasViejas = JSON.parse(localStorage.getItem("tareas")) || []
-console.log(tareasViejas)
 
+console.log(tareasViejas)
 // Si el array viejo tiene items al momento de cargar la página entonces mostramos las tareas
+
 if (tareasViejas.length > 0) {
 	mostrarTareas()
 }
+
 
 // Boton para agregar las tareas
 let boton = document.getElementById("boton")
@@ -25,8 +27,15 @@ boton.addEventListener("click", (e) => {
 function agregarTareas() {
 	// Obtener la tarea nueva
 	tareasNuevas = document.getElementById("tareas")
-	console.log(tareasNuevas.value)
+		Toastify({
+	
+			text: "Se agrego una tarea",
+			
+			duration: 3000
+			
+			}).showToast();
 
+	
 	// Guardar la tarea nueva en el array
 	tareasViejas.push(tareasNuevas.value)
 	console.log(tareasViejas)
@@ -35,24 +44,23 @@ function agregarTareas() {
 
 	// Guardar el nuevo array en el localStorage
 	localStorage.setItem("tareas", JSON.stringify(tareasViejas))
-
 	mostrarTareas()
 }
 
 function mostrarTareas() {
 	// Vaciamos el placeholder
 	lista.innerHTML = ""
-
 	// Mostramos nueva lista por cada tarea, usamos reverse para mostrar la ultima tarea primero
 	tareasViejas.reverse().forEach((tarea) => {
 		lista.innerHTML += `
-        <div class="contenedor-tareas boton-submit" id="${contador}">
+        <div class="contenedor-tareas" id="${contador}">
         <input type="checkbox" name="" class="form-check-input mt-0" id="checkbox">
         <label for="">${tarea}</label>
         <img src="imagenes/borrar.png" alt="" class="borrar" id="Borrar">
         </div>
     `
 	})
+	
 }
 
 // Tareas Pendientes y Completadas
@@ -93,8 +101,13 @@ lista.addEventListener("click", (e) =>{
 botonReset.addEventListener("click", vaciarLista);
 // Cuando se apriete vaciar lista, se limpiara el localstorage y se recargara la pagina
 function vaciarLista (e){
-	e.preventDefault
-	localStorage.clear(tareas);
-	location.reload();
-
+	let retVal = confirm("¿Seguro desea continuar?");
+    if( retVal == true ){
+		e.preventDefault
+		localStorage.clear(tareas);
+		location.reload();
+        return true;
+    }
 }
+
+

@@ -44,6 +44,9 @@
 
 }
 
+.tareas-input ::placeholder {
+	text-align: center;
+}
 
 
 .tareas-input ::placeholder {
@@ -172,6 +175,6 @@ margin: 0px 0px 0px 10px;
 .conteiner img {
 	margin: 2rem;
 }
-.boton-submit:after {
-	background-color: transparent;
+.boton-submit ::after{
+	background-color: #121212;
 }
