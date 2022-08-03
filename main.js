@@ -12,9 +12,8 @@ let tareasViejas = JSON.parse(localStorage.getItem("tareas")) || []
 console.log(tareasViejas)
 // Si el array viejo tiene items al momento de cargar la página entonces mostramos las tareas
 
-if (tareasViejas.length > 0) {
-	mostrarTareas()
-}
+let agregar_tareasViejas = (tareasViejas.length > 0) ?  mostrarTareas() : null
+
 
 
 // Boton para agregar las tareas
@@ -49,6 +48,7 @@ function agregarTareas() {
 
 function mostrarTareas() {
 	// Vaciamos el placeholder
+	contador++;
 	lista.innerHTML = ""
 	// Mostramos nueva lista por cada tarea, usamos reverse para mostrar la ultima tarea primero
 	tareasViejas.reverse().forEach((tarea) => {
@@ -70,7 +70,7 @@ let actualizacion = () =>{
 	// Llamaremos todos los Checkbox checkeados en la lista
     let checkbox = lista.querySelectorAll(`input[type="checkbox"]:checked`);
 	// Pinteremos en el div llamado Stats, las tareas pendientes y tareas a realizar
-    stats.innerHTML = `<p>Tareas Pendientes: ${element.length} Completadas: ${checkbox.length}</p>`;
+    stats.innerHTML = `<p>Tareas Totales: ${element.length} Completadas: ${checkbox.length}</p>`;
 
 }
 
@@ -101,13 +101,34 @@ lista.addEventListener("click", (e) =>{
 botonReset.addEventListener("click", vaciarLista);
 // Cuando se apriete vaciar lista, se limpiara el localstorage y se recargara la pagina
 function vaciarLista (e){
-	let retVal = confirm("¿Seguro desea continuar?");
-    if( retVal == true ){
-		e.preventDefault
-		localStorage.clear(tareas);
-		location.reload();
-        return true;
-    }
+	Swal.fire({
+		title: 'Estas seguro que queres vaciar la lista?',
+		text: "Esta no se podra recuperar luego",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Si, quiero elimiar esto!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			e.preventDefault
+			localStorage.clear(tareas);
+			location.reload();
+			return true;
+		Swal.fire(
+			'Eliminado!',
+			'Tu lista ha sido borrada',
+			'Finalizado'
+		)
+		}
+	  })
 }
 
+/*
 
+let retVal = confirm("¿Seguro desea continuar?");
+if( retVal == true ){
+
+}
+
+*/
