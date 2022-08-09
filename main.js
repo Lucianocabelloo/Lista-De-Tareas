@@ -25,7 +25,14 @@ boton.addEventListener("click", (e) => {
 
 function agregarTareas() {
 	// Obtener la tarea nueva
-	tareasNuevas = document.getElementById("tareas")
+	tareasNuevas = document.getElementById("tareas");
+	if(tareasNuevas.value == ""){
+		return Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'No podes agregar tareas en blanco...',
+		})
+	}
 		Toastify({
 	
 			text: "Se agrego una tarea",
@@ -42,25 +49,25 @@ function agregarTareas() {
 	tareasNuevas.value = ""
 
 	// Guardar el nuevo array en el localStorage
-	localStorage.setItem("tareas", JSON.stringify(tareasViejas))
+
 	mostrarTareas()
 }
 
 function mostrarTareas() {
 	// Vaciamos el placeholder
-	contador++;
+	contador;
 	lista.innerHTML = ""
 	// Mostramos nueva lista por cada tarea, usamos reverse para mostrar la ultima tarea primero
-	tareasViejas.reverse().forEach((tarea) => {
-		lista.innerHTML += `
-        <div class="contenedor-tareas" id="${contador}">
-        <input type="checkbox" name="" class="form-check-input mt-0" id="checkbox">
-        <label for="">${tarea}</label>
-        <img src="imagenes/borrar.png" alt="" class="borrar" id="Borrar">
-        </div>
-    `
+	tareasViejas.forEach((tarea) => {
+	lista.innerHTML += `
+	<div class="contenedor-tareas" id="${contador}">
+	<input type="checkbox" name="" class="form-check-input mt-0" id="checkbox">
+	<label for="">${tarea}</label>
+	<img src="imagenes/borrar.png" alt="" class="borrar" id="Borrar">
+	</div>
+`
 	})
-	
+		localStorage.setItem("tareas", JSON.stringify(tareasViejas))
 }
 
 // Tareas Pendientes y Completadas
@@ -109,26 +116,43 @@ function vaciarLista (e){
 		confirmButtonColor: '#3085d6',
 		cancelButtonColor: '#d33',
 		confirmButtonText: 'Si, quiero elimiar esto!'
-	}).then((result) => {
+	})
+	.then((result) => {
 		if (result.isConfirmed) {
 			e.preventDefault
 			localStorage.clear(tareas);
 			location.reload();
-			return true;
-		Swal.fire(
-			'Eliminado!',
-			'Tu lista ha sido borrada',
-			'Finalizado'
-		)
+
+			return true
 		}
-	  })
+	})
+}
+// pedir informacion a la api 
+let climaContainer = document.getElementById("clima-conteiner")
+let apiClima = `https://api.openweathermap.org/data/2.5/weather?q=Tucuman&units=metric&appid=4b56f215333470bc78211cf09c98602e`
+// recibir informacion de la api 
+const pedirData = async () => {
+	let clima = []
+	let soleado = []
+let variableFetch = await fetch(apiClima)
+let dataFetch = await variableFetch.json()
+clima.push(dataFetch.main.temp)
+soleado.push(dataFetch.name)
+//console.log(dataFetch)
+console.log(dataFetch)
+console.log(clima)
+console.log(soleado)
+
+clima.forEach(dataFetch => {
+	const p = document.createElement("p")
+
+	p.innerHTML = `<p>La Temperatura es: <span class="span"> &#127777 </span> ${JSON.stringify(clima)}° en la ciudad de <span class="span"> &#128205 </span> ${JSON.stringify(soleado)} </p>`
+
+	climaContainer.appendChild(p)
+
+})
+
 }
 
-/*
 
-let retVal = confirm("¿Seguro desea continuar?");
-if( retVal == true ){
-
-}
-
-*/
+pedirData()

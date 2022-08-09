@@ -17,17 +17,22 @@
 	</head>
 	<body>
 		<main class="conteiner">
-			<img src="imagenes/logo.png" alt="" class="logo" />
+			<div class="header">
+				<img src="imagenes/logo.png" alt="" class="logo" />
+			</div>
 			<h2 class="titulo">Lista de Tareas</h2>
 			<form action="#" id="listadetareas" class="lista-tareas">
 				<input type="text" class="tareas-input form-control"" name="" id="tareas" placeholder="Agregue aqui sus tareas" />
 				<button type="submit" id="boton" class="boton-submit ">Agregar Tarea</button>
 			</form>
-
+			
 			<div id="lista" class="lista-conteiner"></div>
 			<div id="stats" class="stat"></div>
 			<div class="Reset">
 				<button type="reset" class="boton-submit btn-dark" id="reset">Vaciar Lista</button>
+			</div>
+			<div class="clima" id="clima-conteiner">
+				<div class="temperatura"></div>
 			</div>
 		</main>
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

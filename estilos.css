@@ -15,7 +15,7 @@
 }
 .conteiner {
 	background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);
-	height: 100vh;
+	min-height: 100vh;
 }
 .logo {
 	width: 100px;
@@ -170,6 +170,7 @@ margin: 0px 0px 0px 10px;
     text-transform: uppercase;
     -webkit-text-stroke-width: medium;
     text-shadow: 2px 2px 4px white;
+	letter-spacing: 3px;
 }
 
 .conteiner img {
@@ -177,4 +178,23 @@ margin: 0px 0px 0px 10px;
 }
 .boton-submit ::after{
 	background-color: #121212;
+}
+.span{
+	font-size: 1,6rem;
+}
+.header{
+	display: flex;
+    /* justify-content: space-evenly; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clima{
+	display: flex;
+    margin-top: 30px;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 800;
+
+    text-shadow: 0.5px 1px 4px white;
 }
