@@ -58,11 +58,11 @@ function mostrarTareas() {
 	contador;
 	lista.innerHTML = ""
 	// Mostramos nueva lista por cada tarea, usamos reverse para mostrar la ultima tarea primero
-	tareasViejas.forEach((tarea) => {
+	tareasViejas.forEach((tareasNuevas) => {
 	lista.innerHTML += `
-	<div class="contenedor-tareas" id="${contador}">
+	<div class="contenedor-tareas" id="${contador++}">
 	<input type="checkbox" name="" class="form-check-input mt-0" id="checkbox">
-	<label for="">${tarea}</label>
+	<label for="">${tareasNuevas}</label>
 	<img src="imagenes/borrar.png" alt="" class="borrar" id="Borrar">
 	</div>
 `
@@ -89,8 +89,11 @@ lista.addEventListener("click", (e) =>{
 	} 
 	// si hacemos click en cualquier IMG de la lista se ejecutara la funcion borrar tarea con los parametros id
 	else if (e.srcElement.nodeName == "IMG"){
-		console.log(e.srcElement.parentNode.id);
+		//console.log(e.srcElement.parentNode.id);
 		borrarTarea(e.srcElement.parentNode.id)
+		console.log (e)
+
+
 	}   
 	});
 
