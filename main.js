@@ -100,7 +100,18 @@ lista.addEventListener("click", (e) =>{
 	let borrarTarea = (id) =>{
 		let tareaABorrar =  document.getElementById(id);
 		lista.removeChild(tareaABorrar);
+				let tareasEliminadas = [];
+
+		for (let index = 0; index < tareasViejas.length; index++){
+			if (index != tareasEliminadas){
+				tareasEliminadas.push(tareasViejas[index])
+			}
+			console.log("Tareas eliminadas", tareasEliminadas)
+			location.reload();
+			localStorage.setItem("tareas", JSON.stringify(tareasEliminadas))
 		actualizacion();
+		}
+		
 		}
 		// Vaciar Lista
 
