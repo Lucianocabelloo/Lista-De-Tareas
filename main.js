@@ -102,14 +102,14 @@ lista.addEventListener("click", (e) =>{
 		lista.removeChild(tareaABorrar);
 		actualizacion();
 		}
-		let tareasNuevas = []
+		let TareasNuevas = []
 		for (let index = 0; index <= tareasNuevas.lenght; index++){
 			if(index !=id)
 			{
-				tareasNuevas.push(tareasViejas[index]);
+				tareasNuevas.push(TareasViejas[index]);
 			}
 		}
-		localstorage.setitem("tareas", JSON.stringify(tareasNuevas);
+		localstorage.setitem("tareas", JSON.stringify(TareasNuevas);
 		// Vaciar Lista
 
 		let botonReset = document.getElementById("reset");
