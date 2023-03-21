@@ -9,9 +9,7 @@ let lista = document.getElementById("lista")
 // Ver si hay tareas antiguas o si el array está vacío
 let tareasViejas = JSON.parse(localStorage.getItem("tareas")) || []
 
-console.log(tareasViejas)
 // Si el array viejo tiene items al momento de cargar la página entonces mostramos las tareas
-
 let agregar_tareasViejas = (tareasViejas.length > 0) ?  mostrarTareas() : null
 
 
@@ -44,12 +42,8 @@ function agregarTareas() {
 	
 	// Guardar la tarea nueva en el array
 	tareasViejas.push(tareasNuevas.value)
-	console.log(tareasViejas)
-
 	tareasNuevas.value = ""
-
 	// Guardar el nuevo array en el localStorage
-
 	mostrarTareas()
 }
 
@@ -91,9 +85,6 @@ lista.addEventListener("click", (e) =>{
 	else if (e.srcElement.nodeName == "IMG"){
 		//console.log(e.srcElement.parentNode.id);
 		borrarTarea(e.srcElement.parentNode.id)
-		console.log (e)
-
-
 	}   
 	});
 
@@ -150,10 +141,6 @@ let variableFetch = await fetch(apiClima)
 let dataFetch = await variableFetch.json()
 clima.push(dataFetch.main.temp)
 soleado.push(dataFetch.name)
-//console.log(dataFetch)
-console.log(dataFetch)
-console.log(clima)
-console.log(soleado)
 
 clima.forEach(dataFetch => {
 	const p = document.createElement("p")
